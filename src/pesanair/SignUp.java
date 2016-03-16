@@ -59,7 +59,7 @@ public class SignUp extends javax.swing.JFrame {
         txtAlamat.setRows(5);
         jScrollPane1.setViewportView(txtAlamat);
 
-        btnSignUp.setText("Sign Up");
+        btnSignUp.setText("Daftar");
         btnSignUp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSignUpActionPerformed(evt);
