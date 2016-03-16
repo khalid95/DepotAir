@@ -55,7 +55,7 @@ public class LoginScreen extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("Belum punya aku? buat akun");
+        jLabel1.setText("Buat Akun?");
         jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel1MouseClicked(evt);
@@ -80,13 +80,10 @@ public class LoginScreen extends javax.swing.JFrame {
                             .addComponent(username, javax.swing.GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE)
                             .addComponent(password)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(83, 83, 83)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(83, 83, 83)
-                                .addComponent(login))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(38, 38, 38)
-                                .addComponent(jLabel1)))
+                            .addComponent(jLabel1)
+                            .addComponent(login))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
