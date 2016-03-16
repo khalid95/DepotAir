@@ -15,6 +15,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
+import javax.swing.JTextField;
 
 /**
 *
@@ -82,12 +83,17 @@ public class DBEngine
     }
     
     public int check_login(String nama, String password) {
-        int check = 0;
+        int cek = 0;
         try {
             String sql = "SELECT COUNT(*) FROM customer WHERE nama='nama' AND password='password'";
-            stmt.executeUpdate(sql);
+            rs = stmt.executeQuery(sql);
+            cek = rs.getInt(1);
         }catch(SQLException e) {}
         
-        return check;
+        return cek;
+    }
+
+    int check_login(JTextField username, JTextField password) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

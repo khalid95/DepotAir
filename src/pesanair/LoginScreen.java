@@ -17,6 +17,7 @@ public class LoginScreen extends javax.swing.JFrame {
     /**
      * Creates new form DepotAirGUI
      */
+    DBEngine db = new DBEngine();
     public LoginScreen() {
         initComponents();
     }
@@ -131,6 +132,8 @@ public class LoginScreen extends javax.swing.JFrame {
 
     private void loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginActionPerformed
         // TODO add your handling code here:
+        int cek;
+        cek = db.check_login(username, password);
         if(username.getText().equals("admin") && password.getText().equals("admin")) {
             //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -160,8 +163,11 @@ public class LoginScreen extends javax.swing.JFrame {
             }
             this.dispose();
         }
-        else {
-            
+        else if(cek == 1){
+            System.out.println("Berhasil");
+        }
+        else { 
+            System.out.println("Gagal");
         }
     }//GEN-LAST:event_loginActionPerformed
 
