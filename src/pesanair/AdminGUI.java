@@ -23,20 +23,22 @@ public class AdminGUI extends javax.swing.JFrame {
     /**
      * Creates new form AdminGUI
      */
-    List<Penerbit> penerbit = new ArrayList<>();
+    List<Customer> customers = new ArrayList<>();
     
     public AdminGUI() throws SQLException {
         DBEngine db = new DBEngine();
-        penerbit = db.getPenerbit();
+        customers = db.getCustomer();
         initComponents();
         updateTable();
         
     }
     
     private void updateTable() {
-        for(int i=0; i<penerbit.size(); i++) {
-            tablePelanggan.append("\n"+penerbit.get(i).getId()+"\t"+penerbit.get(i).getNama()+
-                    "\t\t\t"+penerbit.get(i).getKota());
+        for(int i=0; i<customers.size(); i++) {
+//            tablePelanggan.append("\n"+penerbit.get(i).getId()+"\t"+penerbit.get(i).getNama()+
+//                    "\t\t\t"+penerbit.get(i).getKota());
+              tablePelanggan.append("\n"+customers.get(i).getUsername()+"\t"+customers.get(i).getEmail()+"\t"+
+                      customers.get(i).getAlamat());
         }
     }
 
@@ -60,7 +62,7 @@ public class AdminGUI extends javax.swing.JFrame {
         tablePelanggan.setEditable(false);
         tablePelanggan.setColumns(20);
         tablePelanggan.setRows(5);
-        tablePelanggan.setText("ID\tNama\t\t\tKota\n--------------------------------------------------------------------------------------------");
+        tablePelanggan.setText("Username\tEmail\tAlamat\n--------------------------------------------------------------------------------------------");
         tablePelanggan.setBorder(new javax.swing.border.MatteBorder(null));
         jScrollPane1.setViewportView(tablePelanggan);
 
@@ -68,9 +70,7 @@ public class AdminGUI extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 227, Short.MAX_VALUE))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 578, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

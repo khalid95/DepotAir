@@ -35,13 +35,14 @@ public class DBEngine
     DBEngine(){
         try{
         //loading driver MySQL/J
-        Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("com.mysql.jdbc.Driver");
 
-        //membuat koneksi database
-        con = DriverManager.getConnection("jdbc:mysql://localhost:3306/pjl?zeroDateTimeBehavior=convertToNull", "root", "");
+            //membuat koneksi database
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/pjl?zeroDateTimeBehavior=convertToNull", "root", "");
 
-        //statemen sql statik
-        stmt = con.createStatement();
+            //statemen sql statik
+            stmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
+            ResultSet.CONCUR_UPDATABLE);
         }
         catch(ClassNotFoundException e){
             System.err.println("Error loading driver: " + e.getMessage());
@@ -58,17 +59,18 @@ public class DBEngine
     * @throws java.lang.Exception
     */
     
-    public List<Penerbit> getPenerbit() throws SQLException {
+    public List<Customer> getCustomer() throws SQLException {
         DBEngine db = new DBEngine();
-        List<Penerbit> penerbit = new ArrayList<>();
+        List<Customer> customers = new ArrayList<>();
         
-        rs = stmt.executeQuery("SELECT * FROM penerbit");
+        rs = stmt.executeQuery("SELECT * FROM customer");
         
         while(rs.next()) {
-            penerbit.add(new Penerbit(rs.getInt("id"), rs.getString("nama"), rs.getString("kota")));
+            customers.add(new Customer(rs.getString("nama"), rs.getString("email"), rs.getString("password"), rs.getString("alamat")));
         }
+        rs.close();
         
-        return penerbit;
+        return customers;
     }
     
     public void tambahData(Customer customer) {
@@ -82,18 +84,13 @@ public class DBEngine
         }
     }
     
-    public int check_login(String nama, String password) {
-        int cek = 0;
-        try {
-            String sql = "SELECT COUNT(*) FROM customer WHERE nama='nama' AND password='password'";
-            rs = stmt.executeQuery(sql);
-            cek = rs.getInt(1);
-        }catch(SQLException e) {}
-        
+    public int check_login(String nama, String password) throws SQLException {
+        DBEngine db = new DBEngine();
+        String sql = "SELECT COUNT(*) FROM customer WHERE nama='"+nama+"' AND password='"+password+"'";
+        rs = stmt.executeQuery(sql);
+        rs.next();
+        int cek = rs.getInt(1);
         return cek;
     }
-
-    int check_login(JTextField username, JTextField password) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    
 }
