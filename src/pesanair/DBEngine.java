@@ -51,6 +51,19 @@ public class DBEngine
             System.err.println("Error SQL: " + e.getMessage());
         }
     }
+    
+    public static Connection connectDB() {
+        try {
+            Connection conn = null;
+            Class.forName("com.mysql.jdbc.Driver");
+
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/pjl?zeroDateTimeBehavior=convertToNull", "root", "");
+            
+            return conn;
+        }catch(Exception e) {
+            return null;
+        }
+    }
 
     /**
     * This method will load vector of vector of string and load all the data in

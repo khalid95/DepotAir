@@ -8,6 +8,7 @@ package pesanair;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -160,7 +161,7 @@ public class LoginScreen extends javax.swing.JFrame {
                 }
                 try {
                     //</editor-fold>
-                    new AdminGUI().setVisible(true);
+                    new InfoCustomer().setVisible(true);
                 } catch (Exception ex) {
                     Logger.getLogger(LoginScreen.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -199,6 +200,7 @@ public class LoginScreen extends javax.swing.JFrame {
             }
             else {
                 System.out.println("Gagal "+cek+" "+username.getText()+" "+password.getText());
+                JOptionPane.showMessageDialog(this, "Username atau password salah!!!");
              
             }
         } catch (SQLException ex) {
